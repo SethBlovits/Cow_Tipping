@@ -35,8 +35,8 @@ public class detectCows : MonoBehaviour
         RaycastHit hit;
 
         if(Physics.SphereCast(transform.position,1,transform.forward,out hit,2)){
-            Debug.Log(hit.collider.name == "Cow");
-            if(hit.collider.name == "Cow"){
+            Debug.Log(hit.collider.name == "cow");
+            if(hit.collider.name == "cow"){
                 jokeToggle = true;
             }
             else{

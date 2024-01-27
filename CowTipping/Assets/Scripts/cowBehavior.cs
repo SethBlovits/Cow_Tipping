@@ -16,6 +16,7 @@ public class cowBehavior : MonoBehaviour
     void Start(){
         randomTimer =  Random.Range(2f,6f);
         m_animator.SetBool("isMoving",false);
+        transform.eulerAngles = Vector3.zero;
     }
     void FixedUpdate()
     {

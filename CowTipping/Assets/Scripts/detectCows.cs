@@ -23,7 +23,6 @@ public class detectCows : MonoBehaviour
             if(current<1){
                 current +=.001f;
             }
-            
         }
         else{
             if(current>0){
@@ -41,6 +40,9 @@ public class detectCows : MonoBehaviour
             }
             else{
                 jokeToggle = false;
+            }
+            if(current>=1 & jokeToggle){
+                hit.collider.gameObject.GetComponent<tippingScript>().tipping = true;
             }
         }
         image.fillAmount = current/max;

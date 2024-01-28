@@ -10,9 +10,10 @@ public class farmerControl : MonoBehaviour
     // Start is called before the first frame update
     //public Rigidbody m_rigidBody;
     float randomTimer;
-    bool reset = true; 
-    bool complete = false;
+    //bool reset = true; 
+    //bool complete = false;
     public bool moveTime = false;
+    public bool idle = true;
     // Update is called once per frame
     void Start(){
         randomTimer =  Random.Range(2f,6f);
@@ -23,20 +24,24 @@ public class farmerControl : MonoBehaviour
         
         //cowParent.transform.position += cowParent.transform.forward*.05f;
         //m_rigidBody.MovePosition(transform.position + transform.forward*Time.deltaTime);
-        if(randomTimer <= 0){
-            //randomRotation();
-            //moveForward();
-            m_animator.SetBool("isMoving",true);
-            randomTimer =  Random.Range(2f,6f);
-             
+        if(idle){
+            if(randomTimer <= 0){
+                //randomRotation();
+                //moveForward();
+                m_animator.SetBool("isMoving",true);
+                randomTimer =  Random.Range(2f,6f);
+                
+            }
+            else{
+                randomTimer -= Time.deltaTime;
+                
+                
+            }
         }
         else{
-            randomTimer -= Time.deltaTime;
-            
-            
+            m_animator.SetBool("isMoving",false);
         }
     }
-    
     
     void moveForward(){
         //Debug.Log(randomTimer);
@@ -53,4 +58,5 @@ public class farmerControl : MonoBehaviour
         m_animator.SetBool("isMoving",false);
 
     }
+    
 }

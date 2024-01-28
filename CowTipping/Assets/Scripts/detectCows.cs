@@ -12,6 +12,7 @@ public class detectCows : MonoBehaviour
     public Image image;
     float current = 0f;
     float max = 1f;
+    public GameObject cowImageSpawner;
           
         
     
@@ -19,7 +20,8 @@ public class detectCows : MonoBehaviour
     void Update()
     {   
         if(Input.GetKey("e") & jokeToggle){
-            Debug.Log("Drawing");
+            //SDebug.Log("Drawing");
+            cowImageSpawner.GetComponent<cowfaceSpawner>().launch = true;
             if(current<1){
                 current +=.001f;
             }
@@ -28,13 +30,14 @@ public class detectCows : MonoBehaviour
             if(current>0){
                 current -= .001f;
             }
+            cowImageSpawner.GetComponent<cowfaceSpawner>().launch = false;
         }
         
         
         RaycastHit hit;
 
         if(Physics.SphereCast(transform.position,1,transform.forward,out hit,2)){
-            Debug.Log(hit.collider.name == "cow");
+            //Debug.Log(hit.collider.name == "cow");
             if(hit.collider.name == "cow"){
                 jokeToggle = true;
             }

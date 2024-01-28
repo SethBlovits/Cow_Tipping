@@ -9,8 +9,8 @@ public class cowBehavior : MonoBehaviour
     // Start is called before the first frame update
     //public Rigidbody m_rigidBody;
     float randomTimer;
-    bool reset = true; 
-    bool complete = false;
+    //bool reset = true; 
+    //bool complete = false;
     public bool moveTime = false;
     // Update is called once per frame
     void Start(){

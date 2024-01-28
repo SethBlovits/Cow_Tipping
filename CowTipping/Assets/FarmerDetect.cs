@@ -10,6 +10,7 @@ public class FarmerDetect : MonoBehaviour
     public GameObject bullet;
     public GameObject shotgun;
     public GameObject farmerParent;
+    public GameObject player;
     float gunCooldown = 2f;
     Vector3 playerLocation;
     float visionRange = 10;
@@ -40,8 +41,9 @@ public class FarmerDetect : MonoBehaviour
                     heardLaughing();
                 }
             }
-            if(hitCollider.name == "Player"){
+            if(hitCollider.name == "player"){
                     
+                    hitCollider.gameObject.GetComponent<musicController>().chased = true;
                     farmerParent.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward,hitCollider.transform.position-transform.position,2f,2f));
                     playerLocation = hitCollider.transform.position-shotgun.transform.position+shotgun.transform.forward;
 
@@ -60,7 +62,7 @@ public class FarmerDetect : MonoBehaviour
        
     }
     void Patrol(){
-        Debug.Log(patrolPoints[0]);
+        //Debug.Log(patrolPoints[0]);
         float distance = Vector3.Magnitude(patrolPoints[currentPatrol]-farmerParent.transform.position);
         if(distance<5f)
         {

@@ -11,6 +11,8 @@ public class MovementScript : MonoBehaviour
     //float currentMoveSpeedX=0;
     //float currentMoveSpeedY=0;
     Rigidbody m_rigidbody;
+    public Animator m_animator;
+    GameObject playerParent;
     void Start()
     {
         m_rigidbody = GetComponent<Rigidbody>();
@@ -24,14 +26,23 @@ public class MovementScript : MonoBehaviour
    
     void buttonWatcher(){
         Vector3 moveVector = Vector3.zero;
+        m_animator.SetBool("isMoving",false);
+        if(Input.GetKey("left shift")){
+            moveSpeed = 20;
+        }
+        else{
+            moveSpeed = 15;
+        }   
         if(Input.GetKey("a")){
             moveVector += -transform.right*Time.deltaTime*moveSpeed;
+            //m_animator.SetBool("isMoving",true);
             //currentMoveSpeedX=-speed;
             //m_animator.SetFloat("Speed%",currentMoveSpeed);
             //m_rigidbody.MovePosition(transform.position - transform.right * Time.deltaTime * speed);
         }
         if(Input.GetKey("d")){
             moveVector += transform.right*Time.deltaTime*moveSpeed;
+            //m_animator.SetBool("isMoving",true);
             //m_animator.SetTrigger("WalkTrigger");
             //currentMoveSpeedX=speed;
             //m_animator.SetFloat("Speed%",currentMoveSpeed);
@@ -39,6 +50,7 @@ public class MovementScript : MonoBehaviour
         }
         if(Input.GetKey("w")){
             moveVector += transform.forward*Time.deltaTime*moveSpeed;
+            //m_animator.SetBool("isMoving",true);
             //m_animator.SetTrigger("WalkTrigger");
             //currentMoveSpeedY=speed;
             //m_animator.SetFloat("Speed%",currentMoveSpeed);
@@ -46,6 +58,7 @@ public class MovementScript : MonoBehaviour
         }
         if(Input.GetKey("s")){
             moveVector += -transform.forward*Time.deltaTime*moveSpeed;
+            //m_animator.SetBool("isMoving",true);
             //m_animator.SetTrigger("WalkTrigger");
             //currentMoveSpeedY=-speed;
             //m_animator.SetFloat("Speed%",currentMoveSpeed);

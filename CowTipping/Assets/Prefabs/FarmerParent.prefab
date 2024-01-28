@@ -94,6 +94,102 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d84f8602bd0f8e44497a07e044b99ae2, type: 3}
   m_PrefabInstance: {fileID: 3357037845705562071}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &3465382193325593005
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2474712548505528966}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c5f85887df594504eb042a81d8e2c6cd, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.155
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 20
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.002
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1.002004
+      outSlope: -1.002004
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!95 &3357037846123944374
 Animator:
   serializedVersion: 5
@@ -115,22 +211,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3357037846123944375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2474712548505528966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96d96f9ca513552408e5ac4ac1b1ef90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  farmerParent: {fileID: 3357037845400499367}
-  m_animator: {fileID: 3357037846123944374}
-  moveTime: 0
-  idle: 1
 --- !u!114 &3357037846123944373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +227,43 @@ MonoBehaviour:
   bullet: {fileID: 2810331729970730947, guid: c24e7ec4924874744be2bcabb5c40c05, type: 3}
   shotgun: {fileID: 2474712548606539471}
   farmerParent: {fileID: 3357037845400499367}
+  player: {fileID: 0}
   m_animator: {fileID: 3357037846123944374}
+  patrolPoints: []
+--- !u!114 &3357037846123944375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2474712548505528966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96d96f9ca513552408e5ac4ac1b1ef90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  farmerParent: {fileID: 3357037845400499367}
+  m_animator: {fileID: 3357037846123944374}
+  moveTime: 0
+  idle: 1
+--- !u!114 &7349586247644165151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2474712548505528966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38af7a1a2afde844e8b73faa8bd1b82d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  farmerSpeak: {fileID: 3465382193325593005}
+  voices:
+  - {fileID: 8300000, guid: c5f85887df594504eb042a81d8e2c6cd, type: 3}
+  - {fileID: 8300000, guid: 02f69e448fe01824e9eeafedb123341c, type: 3}
+  - {fileID: 8300000, guid: 669a9e64c9a1ce94f8d127f532e15c4a, type: 3}
+  - {fileID: 8300000, guid: c44c3c8587bc6d241887ee18adf97d08, type: 3}
 --- !u!4 &2962279347285651516 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d84f8602bd0f8e44497a07e044b99ae2, type: 3}

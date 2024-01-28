@@ -15,6 +15,7 @@ public class FollowPlayer : MonoBehaviour
     {
         transform.position = player.transform.position - player.transform.forward*backScale + player.transform.up*upScale;
         Cursor.lockState = CursorLockMode.Locked;
+        transform.rotation = Quaternion.Euler(new Vector3(0,-180,0));
     }
 
     // Update is called once per frame

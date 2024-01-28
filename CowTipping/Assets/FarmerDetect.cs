@@ -13,11 +13,13 @@ public class FarmerDetect : MonoBehaviour
     public GameObject player;
     float gunCooldown = 2f;
     Vector3 playerLocation;
-    float visionRange = 10;
+    float visionRange = 30;
     public Animator m_animator;
     public Vector3[] patrolPoints;
     int currentPatrol = 0;
     bool alerted=false;
+    public AudioSource shotfire;
+    bool seeingPlayer=false;
     void Start(){
         idleScript = GetComponent<farmerControl>();
         patrolPoints = new Vector3[3];
@@ -29,20 +31,22 @@ public class FarmerDetect : MonoBehaviour
     void Update()
     {
         farmerParent.transform.position = new Vector3(farmerParent.transform.position.x,1.71f,farmerParent.transform.position.z);
-        if(alerted){
+        if(alerted & !seeingPlayer){
             Patrol();
         }
+        seeingPlayer = false;
         gunCooldown-=Time.deltaTime;
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, visionRange);
         foreach (var hitCollider in hitColliders)
         {
             if(hitCollider.name =="cow"){
+                
                 if(hitCollider.gameObject.GetComponent<tippingScript>().tipping){
                     heardLaughing();
                 }
             }
             if(hitCollider.name == "player"){
-                    
+                    seeingPlayer = true;
                     hitCollider.gameObject.GetComponent<musicController>().chased = true;
                     farmerParent.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward,hitCollider.transform.position-transform.position,2f,2f));
                     playerLocation = hitCollider.transform.position-shotgun.transform.position+shotgun.transform.forward;
@@ -51,7 +55,7 @@ public class FarmerDetect : MonoBehaviour
                     seenPlayer();
                     //Debug.Log(playerLocation.magnitude);
                     if(playerLocation.magnitude>5f){
-                        farmerParent.transform.position += farmerParent.transform.forward*Time.deltaTime*10;
+                        farmerParent.transform.position += farmerParent.transform.forward*Time.deltaTime*7;
                     }
                     
                 }
@@ -74,14 +78,14 @@ public class FarmerDetect : MonoBehaviour
             }
         }
         farmerParent.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward,patrolPoints[currentPatrol]-transform.position,2f,2f));
-        farmerParent.transform.position += farmerParent.transform.forward*Time.deltaTime*5; 
+        farmerParent.transform.position += farmerParent.transform.forward*Time.deltaTime*15; 
     }
     void heardLaughing(){
         alerted = true;
         m_animator.SetBool("isChasing",true);
         GetComponent<farmerControl>().idle=false;
         Debug.Log("Heard Laughing");
-        visionRange = 30f;
+        visionRange = 50f;
         
     }
     void seenPlayer(){
@@ -91,6 +95,7 @@ public class FarmerDetect : MonoBehaviour
         GetComponent<farmerControl>().idle=false;
         //Debug.Log("Seen Player");
         if(gunCooldown<=0){
+            shotfire.Play();
             GameObject bulletClone = Instantiate(bullet,shotgun.transform.position+shotgun.transform.forward,farmerParent.transform.rotation);
             //GameObject bulletClone = Instantiate(bullet,shotgun.transform.position+shotgun.transform.forward,);
             bulletClone.GetComponent<Rigidbody>().velocity = playerLocation * 10;

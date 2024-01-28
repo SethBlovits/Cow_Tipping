@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class MovementScript : MonoBehaviour
 {
@@ -13,9 +15,12 @@ public class MovementScript : MonoBehaviour
     Rigidbody m_rigidbody;
     public Animator m_animator;
     GameObject playerParent;
+    public TMP_Text text;
     void Start()
     {
         m_rigidbody = GetComponent<Rigidbody>();
+        text.text = "Win by making 20 cows laugh so hard they tip over.WASD to move. Shift to sprint. Hold E next to a cow to start telling jokes. Farmers will shoot if you get too close. Don't get shot or you lose!";
+        transform.eulerAngles = new Vector3(0,-180,0);
         //maxSpeed = runSpeed;
        // layerMask = 1 << 6;
 
@@ -28,12 +33,14 @@ public class MovementScript : MonoBehaviour
         Vector3 moveVector = Vector3.zero;
         m_animator.SetBool("isMoving",false);
         if(Input.GetKey("left shift")){
+            
             moveSpeed = 20;
         }
         else{
             moveSpeed = 15;
         }   
         if(Input.GetKey("a")){
+            text.text = "";
             moveVector += -transform.right*Time.deltaTime*moveSpeed;
             //m_animator.SetBool("isMoving",true);
             //currentMoveSpeedX=-speed;
@@ -41,6 +48,7 @@ public class MovementScript : MonoBehaviour
             //m_rigidbody.MovePosition(transform.position - transform.right * Time.deltaTime * speed);
         }
         if(Input.GetKey("d")){
+            text.text = "";
             moveVector += transform.right*Time.deltaTime*moveSpeed;
             //m_animator.SetBool("isMoving",true);
             //m_animator.SetTrigger("WalkTrigger");
@@ -49,6 +57,7 @@ public class MovementScript : MonoBehaviour
             //m_rigidbody.MovePosition(transform.position + transform.right * Time.deltaTime * speed);
         }
         if(Input.GetKey("w")){
+            text.text = "";
             moveVector += transform.forward*Time.deltaTime*moveSpeed;
             //m_animator.SetBool("isMoving",true);
             //m_animator.SetTrigger("WalkTrigger");
@@ -57,6 +66,7 @@ public class MovementScript : MonoBehaviour
            // m_rigidbody.MovePosition(transform.position + transform.forward * Time.deltaTime * speed);
         }
         if(Input.GetKey("s")){
+            text.text = "";
             moveVector += -transform.forward*Time.deltaTime*moveSpeed;
             //m_animator.SetBool("isMoving",true);
             //m_animator.SetTrigger("WalkTrigger");
@@ -69,6 +79,7 @@ public class MovementScript : MonoBehaviour
             jumpBuffered = true;
         }*/
     }
+    
     // Update is called once per frame
     /*
     void checkShift(){
@@ -103,7 +114,7 @@ public class MovementScript : MonoBehaviour
         
         //m_animator.SetFloat("X_Speed",currentMoveSpeedX); 
         //m_animator.SetFloat("Y_Speed",currentMoveSpeedY);
-         
+        
         
     }
     /*

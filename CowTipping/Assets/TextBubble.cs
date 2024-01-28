@@ -38,7 +38,7 @@ public class TextBubble : MonoBehaviour
         "What do you call a cow with a sense of humor?Laughing stock!",
         "What did the farmer say after he told a joke to the cow? I think you herd me!",
         "Why did the cow go to space?To see the moooon!",
-        "What do you get when you cross a cow and a trampoline?Milkshakes!(Because the milk's already been shaken!)",
+        "What do you get when you cross a cow and a trampoline? Milkshakes!",
         "How does a farmer mend his overalls? With a cabbage patch!",
         "Why did the farmer bring a ladder to the bar?Because he heard the drinks were on the house!",
         "What do you call a farmer who can't find his tractor?Out standing in his field!",
@@ -67,7 +67,7 @@ public class TextBubble : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(bubbles);
+        //Debug.Log(bubbles);
         bubbleTimer-=Time.deltaTime;
         if(bubbles){
             if(bubbleTimer<=0){

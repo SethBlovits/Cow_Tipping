@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class moveCow : MonoBehaviour
 {
     public GameObject cow;
@@ -22,3 +22,4 @@ public class moveCow : MonoBehaviour
         
     }
 }
+*/

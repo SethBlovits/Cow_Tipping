@@ -5,30 +5,32 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class hitDetection : MonoBehaviour
+
+public class victorWatcher : MonoBehaviour
 {
+    public int totalTips;
+    public int winningTips;
     public TMP_Text text;
+    public TMP_Text score;
     float resetTime = 3f;
     float timeScaler = 0;
-    public AudioSource gameOverAudio;
+
     // Start is called before the first frame update
     void Start()
     {
-        text.text="";
+        totalTips=0;
         timeScaler = 0;
     }
-    // Update is called once per frame
-    void OnCollisionEnter(Collision collision) {
-        if(collision.gameObject.name == "Bullet(Clone)"){
-            text.text="Game Over! You got Caught";
-            //transform.position = new Vector3(480,1,480);
-            timeScaler = 1;
-            gameOverAudio.Play();
 
-        }
-    }
-    void Update(){
+    // Update is called once per frame
+    void Update()
+    {
+        score.text = "Score: "+totalTips;
         resetTime -= Time.deltaTime * timeScaler;
+        if(winningTips == totalTips){
+            text.text = "Congratulations on Winning!";
+            timeScaler = 1;
+        }
         if(resetTime<=0){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }

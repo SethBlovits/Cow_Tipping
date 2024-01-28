@@ -2,26 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class voiceLines : MonoBehaviour
+public class randomMoo : MonoBehaviour
 {
     // Start is called before the first frame update
-    public AudioSource farmerSpeak;
-    bool m_Play = false;
-    bool m_ToggleChange = true;
+    public AudioSource moo;
     float timer;
-    public List<AudioClip> voices;
+    bool m_ToggleChange = true;
+    bool m_Play = false;
+    
     void Start()
     {
-        timer = Random.Range(15,50);
+        timer = Random.Range(1,50);
     }
 
     // Update is called once per frame
     void Update()
-    {   
-
+    {
         if(timer<=0){
             m_Play = true;
-            timer = Random.Range(15,30);
+            timer = Random.Range(1,50);
         }
         else{
             m_Play = false;
@@ -29,16 +28,13 @@ public class voiceLines : MonoBehaviour
         }
         playSound();
         m_ToggleChange = true;
-
-        
     }
     void playSound(){
         if (m_Play == true && m_ToggleChange == true)
         {
-            Debug.Log("Playing Sound");
-            farmerSpeak.clip = voices[Random.Range(0,4)];
+            Debug.Log("Playing Moo");
             //Play the audio you attach to the AudioSource component
-            farmerSpeak.Play();
+            moo.Play();
             //Ensure audio doesn’t play more than once
             m_ToggleChange = false;
         }
